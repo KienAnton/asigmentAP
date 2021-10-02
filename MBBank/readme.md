@@ -1,0 +1,64 @@
+﻿### Chức năng.
+- Khách hàng có thể đăng ký tài khoản hệ thống. -1
+- Khách hàng có thể đăng nhập vào hệ thống. -2
+- Khách hàng có thể xem thông tin giới thiệu về ngân hàng. -
+- Khách hàng (sau khi đăng nhập có thể) gửi tiền vào tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) rút tiền khỏi tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) rút tiền khỏi tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) xem thông tin tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) chỉnh sửa thông tin tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) khóa mở tài khoản.
+- Khách hàng (sau khi đăng nhập có thể) thực hiện chuyển tiền trong ngân hàng.
+- Khách hàng (sau khi đăng nhập có thể) tra cứu lịch sử giao dịch trong tài khoản.
+- (Option) khách hàng (sau khi đăng nhập) có thể đóng tài khoản.
+- Admin có thể đăng nhập hệ thống với quyền admin.
+- Admin có thể duyệt/từ chối các thông tin tài khoản đăng ký.
+- Admin có thể tạo các thông tin tài khoản admin khác.
+- Admin chuyển trạng thái tài khoản khách hàng (khóa, mở).
+- Admin có thể tìm kiểm thông tin khách hàng theo: số tài khoản.
+- Admin có thể tìm kiểm thông tin khách hàng theo: số điện thoại.
+- Admin có thể tìm kiểm thông tin khách hàng theo: số cmnd, cccd.
+- Admin có thể kiểm tra lịch sử giao dịch theo số tài khoản.
+### Usercase.
+- Role: Guset, Ueser, Admin
+### Entity.
+- Admin.
+  - Username (string): ten dang nhap
+  - PasswordHash (string): password da ma hoa
+  - Salt (string): muoi
+  - FullName (string): ten
+  - Phone (String): so dien thoai
+  - CreatedAt (Date): ngay tao tai khoan
+  - UpdatedAt (Date): ngay update thong tin tai khoan
+  - DeletedAt (Date): ngay dong tai khoan
+  - Status (int): trang thai tai khoan, 0 la chua active, 1 la active, 2 la khoa, -1 la deleted.
+- Account (Có thể tách ra một bảng khác chứa thông tin cá nhân).
+  - AccountNumber (string): Số tài khoản.
+  - Type (int): cá nhân hay doanh nghiệp
+  - Balance (double): số dư tài khoản.
+  - UserName (string): số dư tài khoản ebanking.
+  - Password (string): mật khẩu.
+  - FirstName (string): Tên.
+  - LastName (string): Họ.
+  - Dob (Date): Ngày sinh.
+  - Email (string): hòm thư điện tử.
+  - IdentityNumber (string): căn cước hoặc chứng minh thư.
+  - Phone (string): điện thoại.
+  - CityId (string): khóa ngoại từ bảng thành phố.
+  - DistrickId (int): khóa ngoại từ bảng quận huyện.
+  - WardId (int): Khóa ngoại từ bảng phường xã.
+  - Address (string): địa chỉ.
+  - CreatedAt (Date): ngày mở tài khoản.
+  - UpdatedAt (Date): ngày update thông tin tài khoản.
+  - DeletedAt (Date): ngày xóa tài khoản.
+- TransactionHistory
+  - Id (string): mã giao dịch.
+  - SenderAccountNumber (string, FK from Account): ai gửi tiền.
+  - ReceiverAccountNumber (string, FK from Account): ai nhận tiền.
+  - Type (int): withdraw (1), deposit (2), transfer (3).
+  - Amount (double): số tiền giao dịch.
+  - CreatedAt (Date): ngày mở tài khoản.
+  - UpdatedAt (Date): ngày update thông tin tài khoản
+  - DeletedAt (Date): ngày xóa tài khoản.
+  - status (int): trạng thái giao dịch, 1 là thành công, 2 là đang xử lý, 3 là thất bại.
+- (Optional, có thể thay thế bằng file txt) BankInformation.
